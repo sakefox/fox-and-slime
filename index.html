@@ -37,13 +37,13 @@
         .banner-box a { 
             display: block; 
             width: 100%; 
-            height: 280px; /* 稍微加高到 280px，讓這幅精美的作品展現得更完整！ */
+            height: 280px; 
             
-            /* 👇 關鍵修正：這裡換成了你 GitHub 倉庫內該圖片的真實直連絕對網址 */
-            background-image: url('https://raw.githubusercontent.com/sakefox/fox-and-slime/main/437272578_1092529625177433_9143506940498080878_n.jpg'); 
+            /* 👇 已經為你精準替換為最終的絕對路徑與正確的 .png 檔名 */
+            background-image: url('https://raw.githubusercontent.com/sakefox/fox-and-slime/main/437272578_1092529625177433_9143506940498080878_n.png'); 
             
             background-size: cover; 
-            background-position: center 22%; /* 精準微調：對齊拔刀畫面與美麗的臉龐 */
+            background-position: center 22%; 
             background-repeat: no-repeat;
             position: relative;
             text-decoration: none;
@@ -336,7 +336,7 @@
         if (source !== 'e_copper') eCopper.value = formatNum(totalCopper);
         if (source !== 'e_silver') eSilver.value = formatNum(totalCopper / VAL_SILVER);
         if (source !== 'e_gold_small') eGoldSmall.value = formatNum(totalCopper / VAL_GOLD_SMALL);
-        if (source !== 'e_gold_large') eGoldLarge.value = formatNum(totalCopper / VAL_GOLD_LARGE);
+        if (source !== 'e_gold_large') eGoldLarge.value = formatNum(totalCopper / VAL_LARGE);
         if (source !== 'e_meteor') eMeteor.value = formatNum(totalCopper / VAL_METEOR);
     }
 </script>
