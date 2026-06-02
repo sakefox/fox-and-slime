@@ -22,52 +22,52 @@
             color: #e0e0e6; 
         }
         .container { 
-            max-width: 550px; /* 稍微拓寬一點點，讓橫幅更好看 */
+            max-width: 550px; /* 稍微加寬，讓橫幅氣勢更足 */
             margin: 0 auto; 
             background: #252532; 
-            padding: 0 0 30px 0; /* 上下左右間距微調，讓橫幅可以貼齊最上方 */
+            padding: 0 0 30px 0; /* 頂部設為 0，讓橫幅完美貼齊邊框 */
             border-radius: 12px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
             border: 1px solid #3d3d52;
             animation: fadeInUp 0.8s ease-out;
-            overflow: hidden; /* 確保橫幅圓角不會漏出來 */
+            overflow: hidden; /* 核心：鎖住邊緣，讓大橫幅完美繼承容器的圓角 */
         }
         
-        /* 🎮 霸氣小說封面大橫幅樣式 */
+        /* 🦊 霸氣大橫幅專屬樣式區塊 */
         .banner-box a { 
             display: block; 
             width: 100%; 
-            height: 250px; /* 橫幅高度，可依喜好自行增減 */
+            height: 260px; /* 橫幅高度，可依個人喜好自由調整 */
             
-            /* 👇 這裡帶入你的圖片檔名，預設幫你寫好你原本上傳的長檔名 */
+            /* 帶入你的封面圖片檔案名稱 */
             background-image: url('437272578_1092529625177433_9143506940498080878_n.jpg'); 
             
-            background-size: cover; /* 核心技術：自動填滿且絕不變形 */
-            background-position: center 25%; /* 稍微靠上對齊，露出主角完美的臉龐與狐耳 */
+            background-size: cover; /* 絕不變形技術：自動填滿並等比例縮放 */
+            background-position: center 25%; /* 畫面垂直微調：完美露出狐耳娘正臉與拔刀姿勢 */
             background-repeat: no-repeat;
             position: relative;
             text-decoration: none;
             transition: all 0.3s ease;
-            border-bottom: 2px solid #ffd700; /* 橫幅下方加一條金邊 */
+            border-bottom: 2px solid #ffd700; /* 橫幅底部加一條奢華金邊 */
         }
         
-        /* 滑鼠移到橫幅上的特效 */
+        /* 滑鼠懸停橫幅時的微亮效果 */
         .banner-box a:hover { 
-            filter: brightness(1.1); /* 微亮效果 */
+            filter: brightness(1.1); 
         }
 
-        /* 橫幅上的推廣小文字標籤 */
+        /* 橫幅右下角的小告示標籤 */
         .banner-tag {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.7);
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.75);
             color: #ffd700;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 4px;
             font-size: 0.75em;
             letter-spacing: 1px;
-            border: 1px solid rgba(255,215,0,0.4);
+            border: 1px solid rgba(255,215,0,0.3);
             transition: all 0.3s;
         }
         .banner-box a:hover .banner-tag {
@@ -75,7 +75,7 @@
             color: #15151f;
         }
 
-        /* 內容區塊間距調整 */
+        /* 主內容區塊的內部留白 */
         .main-content {
             padding: 25px 30px 0 30px;
         }
@@ -282,7 +282,6 @@
 
     function formatNum(num) { return parseFloat(num.toFixed(4)); }
 
-    // 冒險者背包模式
     function calcShopping(source) {
         const elReal = document.getElementById('s_real'); const elMeteor = document.getElementById('s_meteor');
         const elGoldLarge = document.getElementById('s_gold_large'); const elGoldSmall = document.getElementById('s_gold_small');
@@ -324,7 +323,7 @@
         if (source !== 's_copper') document.getElementById('s_copper').value = formatNum(totalCopper);
     }
 
-    // 等值換算模式
+    // 等值換算
     function calcExchange(source) {
         let val = parseFloat(document.getElementById(source).value);
         const eReal = document.getElementById('e_real'); const eCopper = document.getElementById('e_copper');
