@@ -17,46 +17,68 @@
 
         body { 
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            padding: 30px; 
+            padding: 30px 20px; 
             background: #1a1a24; 
             color: #e0e0e6; 
         }
         .container { 
-            max-width: 500px; 
+            max-width: 550px; /* 稍微拓寬一點點，讓橫幅更好看 */
             margin: 0 auto; 
             background: #252532; 
-            padding: 30px; 
+            padding: 0 0 30px 0; /* 上下左右間距微調，讓橫幅可以貼齊最上方 */
             border-radius: 12px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
             border: 1px solid #3d3d52;
             animation: fadeInUp 0.8s ease-out;
+            overflow: hidden; /* 確保橫幅圓角不會漏出來 */
         }
         
-        /* 圖片連結樣式 */
-        .illustration-box { text-align: center; margin-bottom: 20px; }
-        .illustration-box a { display: inline-block; text-decoration: none; position: relative; }
-        .illustration-box img {
-            max-width: 150px; 
-            border-radius: 50%; 
-            border: 2px solid #ffd700;
-            transition: all 0.3s ease; 
+        /* 🎮 霸氣小說封面大橫幅樣式 */
+        .banner-box a { 
+            display: block; 
+            width: 100%; 
+            height: 250px; /* 橫幅高度，可依喜好自行增減 */
+            
+            /* 👇 這裡帶入你的圖片檔名，預設幫你寫好你原本上傳的長檔名 */
+            background-image: url('437272578_1092529625177433_9143506940498080878_n.jpg'); 
+            
+            background-size: cover; /* 核心技術：自動填滿且絕不變形 */
+            background-position: center 25%; /* 稍微靠上對齊，露出主角完美的臉龐與狐耳 */
+            background-repeat: no-repeat;
+            position: relative;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid #ffd700; /* 橫幅下方加一條金邊 */
         }
-        /* 滑鼠移到圖片上時的效果 */
-        .illustration-box a:hover img { 
-            transform: scale(1.05); 
-            box-shadow: 0 0 15px rgba(255,215,0,0.6);
+        
+        /* 滑鼠移到橫幅上的特效 */
+        .banner-box a:hover { 
+            filter: brightness(1.1); /* 微亮效果 */
         }
-        /* 提示讀者可以點擊的小字 */
-        .illustration-box::after {
-            content: "點擊前往《妖狐？史萊姆？》線上看";
-            display: block;
-            font-size: 0.75em;
+
+        /* 橫幅上的推廣小文字標籤 */
+        .banner-tag {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
             color: #ffd700;
-            margin-top: 5px;
-            opacity: 0.6;
-            transition: opacity 0.3s;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,215,0,0.4);
+            transition: all 0.3s;
         }
-        .illustration-box:hover::after { opacity: 1; }
+        .banner-box a:hover .banner-tag {
+            background: #ffd700;
+            color: #15151f;
+        }
+
+        /* 內容區塊間距調整 */
+        .main-content {
+            padding: 25px 30px 0 30px;
+        }
 
         h2 { text-align: center; color: #ffd700; margin-top: 0; font-size: 24px; letter-spacing: 2px; line-height: 1.4; margin-bottom: 5px; }
         .subtitle { text-align: center; font-size: 0.9em; color: #a0a0b0; margin-bottom: 20px; }
@@ -124,7 +146,6 @@
             transition: all 0.3s ease;
         }
         
-        /* 輸入框焦點與發光設定 */
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
         
@@ -166,99 +187,90 @@
 </head>
 <body>
 <div class="container">
-    <!-- 🖼️ 圖片現在點擊會在新分頁打開小說連結 -->
-    <div class="illustration-box">
+    <div class="banner-box">
         <a href="https://www.kadokado.com.tw/book/9175" target="_blank" title="前往觀看《妖狐？史萊姆？》">
-            <img src="437272578_1092529625177433_9143506940498080878_n.png" alt="小說插畫" onerror="this.src='https://via.placeholder.com/150/ffd700/15151f?text=Fox+%26+Slime'">
+            <div class="banner-tag">📖 前往《妖狐？史萊姆？》線上看</div>
         </a>
     </div>
 
-    <h2>🪙💲🪙💲🪙💲🪙💲🪙<br>《妖狐？史萊姆？》<br>——世界觀幣值換算器——</h2>
-    <div class="subtitle">創作者與讀者專屬的幣值計算工具</div>
+    <div class="main-content">
+        <h2>🪙💲🪙💲🪙💲🪙💲🪙<br>《妖狐？史萊姆？》<br>——世界觀幣值換算器——</h2>
+        <div class="subtitle">創作者與讀者專屬的幣值計算工具</div>
 
-    <!-- 功能切換按鈕 -->
-    <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab('shopping')">👛 冒險者背包 (錢包整理)</button>
-        <button class="tab-btn" onclick="switchTab('exchange')">🪙 幣值等值換算</button>
-    </div>
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('shopping')">👛 冒險者背包 (錢包整理)</button>
+            <button class="tab-btn" onclick="switchTab('exchange')">🪙 幣值等值換算</button>
+        </div>
 
-    <!-- ==================== 功能一：冒險者背包模式 ==================== -->
-    <div id="tab_shopping" class="tab-content active">
-        <div class="explain-text">💡 模式：輸入預算總額，自動分配冒險者需要掏出哪些面額的硬幣！<br>(例: 輸入150銅 ➔ 自動整理成 1銀 50銅)</div>
+        <div id="tab_shopping" class="tab-content active">
+            <div class="explain-text">💡 模式：輸入預算總額，自動分配冒險者需要掏出哪些面額的硬幣！<br>(例: 輸入150銅 ➔ 自動整理成 1銀 50銅)</div>
+            
+            <div class="input-group">
+                <label class="color-base">💰 輸入物品總價值 <span class="label-desc">(1銅幣 = 10元基準)</span></label>
+                <input type="number" id="s_real" placeholder="請輸入金額..." oninput="calcShopping('s_real')" class="input-real">
+            </div>
+            <hr style="border: 0; border-top: 1px solid #44445c; margin: 20px 0;">
+            <div class="input-group">
+                <label class="color-g-meteor">☄️ 需準備：隕金幣 <span class="label-desc">(價值：一億 / = 100 大金幣)</span></label>
+                <input type="number" id="s_meteor" placeholder="0" oninput="calcShopping('s_meteor')" class="glow-g-meteor">
+            </div>
+            <div class="input-group">
+                <label class="color-g-large">👑 需準備：大金幣 <span class="label-desc">(價值：百萬 / = 100 小金幣)</span></label>
+                <input type="number" id="s_gold_large" placeholder="0" oninput="calcShopping('s_gold_large')" class="glow-g-large">
+            </div>
+            <div class="input-group">
+                <label class="color-g-small">🪙 需準備：小金幣 <span class="label-desc">(價值：一萬 / = 10 銀幣)</span></label>
+                <input type="number" id="s_gold_small" placeholder="0" oninput="calcShoppingDirect('s_gold_small')" class="glow-g-small">
+            </div>
+            <div class="input-group">
+                <label class="color-silver">🥈 需準備：銀幣 <span class="label-desc">(價值：一千 / = 100 銅幣)</span></label>
+                <input type="number" id="s_silver" placeholder="0" oninput="calcShoppingDirect('s_silver')" class="glow-silver">
+            </div>
+            <div class="input-group">
+                <label class="color-copper">🥉 需準備：銅幣 <span class="label-desc">(價值：十 / 最基礎面額)</span></label>
+                <input type="number" id="s_copper" placeholder="0" oninput="calcShoppingDirect('s_copper')" class="glow-copper">
+            </div>
+        </div>
+
+        <div id="tab_exchange" class="tab-content">
+            <div class="explain-text">💡 模式：純幣值換算。各格數字「完全等值」！<br>(例: 輸入1銀 ➔ 全自動同步等於 100銅 / 0.1小金)</div>
+            
+            <div class="input-group">
+                <label class="color-base">💰 等值價值 <span class="label-desc">(1銅幣 = 10元基準)</span></label>
+                <input type="number" id="e_real" placeholder="0" oninput="calcExchange('e_real')" class="input-real">
+            </div>
+            <div class="input-group">
+                <label class="color-copper">🥉 等值銅幣 <span class="label-desc">(價值：十 / 最基礎面額)</span></label>
+                <input type="number" id="e_copper" placeholder="0" oninput="calcExchange('e_copper')" class="glow-copper">
+            </div>
+            <div class="input-group">
+                <label class="color-silver">🥈 等值銀幣 <span class="label-desc">(價值：一千 / = 100 銅幣)</span></label>
+                <input type="number" id="e_silver" placeholder="0" oninput="calcExchange('e_silver')" class="glow-silver">
+            </div>
+            <div class="input-group">
+                <label class="color-g-small">🪙 等值小金幣 <span class="label-desc">(價值：一萬 / = 10 銀幣)</span></label>
+                <input type="number" id="e_gold_small" placeholder="0" oninput="calcExchange('e_gold_small')" class="glow-g-small">
+            </div>
+            <div class="input-group">
+                <label class="color-g-large">👑 等值大金幣 <span class="label-desc">(價值：百萬 / = 100 小金幣)</span></label>
+                <input type="number" id="e_gold_large" placeholder="0" oninput="calcExchange('e_gold_large')" class="glow-g-large">
+            </div>
+            <div class="input-group">
+                <label class="color-g-meteor">☄️ 等值隕金幣 <span class="label-desc">(價值：一億 / = 100 大金幣)</span></label>
+                <input type="number" id="e_meteor" placeholder="0" oninput="calcExchange('e_meteor')" class="glow-g-meteor">
+            </div>
+        </div>
         
-        <div class="input-group">
-            <label class="color-base">💰 輸入物品總價值 <span class="label-desc">(1銅幣 = 10元基準)</span></label>
-            <input type="number" id="s_real" placeholder="請輸入金額..." oninput="calcShopping('s_real')" class="input-real">
-        </div>
-        <hr style="border: 0; border-top: 1px solid #44445c; margin: 20px 0;">
-        <div class="input-group">
-            <label class="color-g-meteor">☄️ 需準備：隕金幣 <span class="label-desc">(價值：一億 / = 100 大金幣)</span></label>
-            <input type="number" id="s_meteor" placeholder="0" oninput="calcShopping('s_meteor')" class="glow-g-meteor">
-        </div>
-        <div class="input-group">
-            <label class="color-g-large">👑 需準備：大金幣 <span class="label-desc">(價值：百萬 / = 100 小金幣)</span></label>
-            <input type="number" id="s_gold_large" placeholder="0" oninput="calcShopping('s_gold_large')" class="glow-g-large">
-        </div>
-        <div class="input-group">
-            <label class="color-g-small">🪙 需準備：小金幣 <span class="label-desc">(價值：一萬 / = 10 銀幣)</span></label>
-            <input type="number" id="s_gold_small" placeholder="0" oninput="calcShoppingDirect('s_gold_small')" class="glow-g-small">
-        </div>
-        <div class="input-group">
-            <label class="color-silver">🥈 需準備：銀幣 <span class="label-desc">(價值：一千 / = 100 銅幣)</span></label>
-            <input type="number" id="s_silver" placeholder="0" oninput="calcShoppingDirect('s_silver')" class="glow-silver">
-        </div>
-        <div class="input-group">
-            <label class="color-copper">🥉 需準備：銅幣 <span class="label-desc">(價值：十 / 最基礎面額)</span></label>
-            <input type="number" id="s_copper" placeholder="0" oninput="calcShoppingDirect('s_copper')" class="glow-copper">
-        </div>
+        <div class="note">💡 幣值進位：100銅 = 1銀 | 10銀 = 1小金 | 100小金 = 1大金 | 100大金 = 1隕金</div>
     </div>
-
-    <!-- ==================== 功能二：單純等值換算模式 ==================== -->
-    <div id="tab_exchange" class="tab-content">
-        <div class="explain-text">💡 模式：純幣值換算。各格數字「完全等值」！<br>(例: 輸入1銀 ➔ 全自動同步等於 100銅 / 0.1小金)</div>
-        
-        <div class="input-group">
-            <label class="color-base">💰 等值價值 <span class="label-desc">(1銅幣 = 10元基準)</span></label>
-            <input type="number" id="e_real" placeholder="0" oninput="calcExchange('e_real')" class="input-real">
-        </div>
-        <div class="input-group">
-            <label class="color-copper">🥉 等值銅幣 <span class="label-desc">(價值：十 / 最基礎面額)</span></label>
-            <input type="number" id="e_copper" placeholder="0" oninput="calcExchange('e_copper')" class="glow-copper">
-        </div>
-        <div class="input-group">
-            <label class="color-silver">🥈 等值銀幣 <span class="label-desc">(價值：一千 / = 100 銅幣)</span></label>
-            <input type="number" id="e_silver" placeholder="0" oninput="calcExchange('e_silver')" class="glow-silver">
-        </div>
-        <div class="input-group">
-            <label class="color-g-small">🪙 等值小金幣 <span class="label-desc">(價值：一萬 / = 10 銀幣)</span></label>
-            <input type="number" id="e_gold_small" placeholder="0" oninput="calcExchange('e_gold_small')" class="glow-g-small">
-        </div>
-        <div class="input-group">
-            <label class="color-g-large">👑 等值大金幣 <span class="label-desc">(價值：百萬 / = 100 小金幣)</span></label>
-            <input type="number" id="e_gold_large" placeholder="0" oninput="calcExchange('e_gold_large')" class="glow-g-large">
-        </div>
-        <div class="input-group">
-            <label class="color-g-meteor">☄️ 等值隕金幣 <span class="label-desc">(價值：一億 / = 100 大金幣)</span></label>
-            <input type="number" id="e_meteor" placeholder="0" oninput="calcExchange('e_meteor')" class="glow-g-meteor">
-        </div>
-    </div>
-    
-    <div class="note">💡 幣值進位：100銅 = 1銀 | 10銀 = 1小金 | 100小金 = 1大金 | 100大金 = 1隕金</div>
 </div>
 
 <script>
-    // 基礎幣值倍率定義（以銅幣為 1 基準）
-    const VAL_COPPER = 1;
-    const VAL_SILVER = 100;
-    const VAL_GOLD_SMALL = 1000;
-    const VAL_GOLD_LARGE = 100000;
-    const VAL_METEOR = 10000000;
+    const VAL_COPPER = 1; const VAL_SILVER = 100; const VAL_GOLD_SMALL = 1000; const VAL_GOLD_LARGE = 100000; const VAL_METEOR = 10000000;
 
-    // 分頁切換邏輯
     function switchTab(tabName) {
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-        
         if(tabName === 'shopping') {
             document.querySelectorAll('.tab-btn')[0].classList.add('active');
             document.getElementById('tab_shopping').classList.add('active');
@@ -268,15 +280,13 @@
         }
     }
 
-    // 格式化數字邏輯
     function formatNum(num) { return parseFloat(num.toFixed(4)); }
 
-    // ==================== 冒險者背包模式 JS 邏輯 ====================
+    // 冒險者背包模式
     function calcShopping(source) {
         const elReal = document.getElementById('s_real'); const elMeteor = document.getElementById('s_meteor');
         const elGoldLarge = document.getElementById('s_gold_large'); const elGoldSmall = document.getElementById('s_gold_small');
         const elSilver = document.getElementById('s_silver'); const elCopper = document.getElementById('s_copper');
-        
         let val = parseFloat(document.getElementById(source).value);
         if (isNaN(val)) { elReal.value=''; elMeteor.value=''; elGoldLarge.value=''; elGoldSmall.value=''; elSilver.value=''; elCopper.value=''; return; }
 
@@ -314,13 +324,12 @@
         if (source !== 's_copper') document.getElementById('s_copper').value = formatNum(totalCopper);
     }
 
-    // ==================== 等值換算模式 JS 邏輯 ====================
+    // 等值換算模式
     function calcExchange(source) {
         let val = parseFloat(document.getElementById(source).value);
         const eReal = document.getElementById('e_real'); const eCopper = document.getElementById('e_copper');
         const eSilver = document.getElementById('e_silver'); const eGoldSmall = document.getElementById('e_gold_small');
         const eGoldLarge = document.getElementById('e_gold_large'); const eMeteor = document.getElementById('e_meteor');
-
         if (isNaN(val)) { eReal.value=''; eCopper.value=''; eSilver.value=''; eGoldSmall.value=''; eGoldLarge.value=''; eMeteor.value=''; return; }
 
         let totalCopper = 0;
