@@ -39,8 +39,8 @@
             width: 100%; 
             height: 280px; 
             
-            /* 👇 已經為你精準替換為最終的絕對路徑與正確的 .png 檔名 */
-            background-image: url('https://github.com/sakefox/fox-and-slime/blob/4d3fbc300c09b49ff3e0e919dd9fc621499383f8/437272578_1092529625177433_9143506940498080878_n.png'); 
+            /* 👇 優化：直接使用純檔名。只要圖跟網頁在同個資料夾，搬到哪都能完美顯示 */
+            background-image: url('437272578_1092529625177433_9143506940498080878_n.png'); 
             
             background-size: cover; 
             background-position: center 22%; 
@@ -181,21 +181,25 @@
 </head>
 <body>
 <div class="container">
+    <!-- 🖼️ 頂部大橫幅區塊 -->
     <div class="banner-box">
         <a href="https://www.kadokado.com.tw/book/9175" target="_blank" title="前往觀看《妖狐？史萊姆？》">
             <div class="banner-tag">📖 前往《妖狐？史萊姆？》線上看</div>
         </a>
     </div>
 
+    <!-- 內文與換算器主體 -->
     <div class="main-content">
         <h2>《妖狐？史萊姆？》<br>——世界觀幣值換算器——</h2>
         <div class="subtitle">創作者與讀者專屬的幣值計算工具</div>
 
+        <!-- 功能切換按鈕 -->
         <div class="tab-buttons">
             <button class="tab-btn active" onclick="switchTab('shopping')">👛 冒險者背包 (錢包整理)</button>
             <button class="tab-btn" onclick="switchTab('exchange')">🪙 幣值等值換算</button>
         </div>
 
+        <!-- ==================== 功能一：冒險者背包模式 ==================== -->
         <div id="tab_shopping" class="tab-content active">
             <div class="explain-text">💡 模式：輸入預算總額，自動分配冒險者需要掏出哪些面額的硬幣！<br>(例: 輸入150銅 ➔ 自動整理成 1銀 50銅)</div>
             
@@ -226,6 +230,7 @@
             </div>
         </div>
 
+        <!-- ==================== 功能二：單純等值換算模式 ==================== -->
         <div id="tab_exchange" class="tab-content">
             <div class="explain-text">💡 模式：純幣值換算。各格數字「完全等值」！<br>(例: 輸入1銀 ➔ 全自動同步等於 100銅 / 0.1小金)</div>
             
@@ -336,7 +341,9 @@
         if (source !== 'e_copper') eCopper.value = formatNum(totalCopper);
         if (source !== 'e_silver') eSilver.value = formatNum(totalCopper / VAL_SILVER);
         if (source !== 'e_gold_small') eGoldSmall.value = formatNum(totalCopper / VAL_GOLD_SMALL);
-        if (source !== 'e_gold_large') eGoldLarge.value = formatNum(totalCopper / VAL_LARGE);
+        
+        /* 👇 修正這裡的 BUG：將原來的 VAL_LARGE 改為正確的 VAL_GOLD_LARGE */
+        if (source !== 'e_gold_large') eGoldLarge.value = formatNum(totalCopper / VAL_GOLD_LARGE);
         if (source !== 'e_meteor') eMeteor.value = formatNum(totalCopper / VAL_METEOR);
     }
 </script>
